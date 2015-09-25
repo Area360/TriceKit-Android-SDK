@@ -7,8 +7,13 @@ This is the TriceKit Android SDK that delivers delightful experiences in conjunc
 In you AndroidManifest.xml
 
 ```
-<meta-data android:name="trice_api_key" android:value="YOUR_API_KEY" />
-<meta-data android:name="trice_username" android:value="YOUR_USER_NAME" />
+<application
+
+  ...
+
+  <meta-data android:name="trice_api_key" android:value="YOUR_API_KEY" />
+  <meta-data android:name="trice_username" android:value="YOUR_USER_NAME" />
+</application>
 ```
 
 In your build.gradle
