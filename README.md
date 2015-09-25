@@ -95,3 +95,37 @@ This is assuming you have set up both a zone and trigger in the CMS.
       }
   });
 ```
+
+### Creating a new beacon zone, trigger and action programmatically:
+
+```
+TriceBeaconProximityZone zone = (TriceBeaconProximityZone) TriceFactory.createZone(TriceZone.eZoneType.BEACON_PROXIMITY);
+
+zone.setRegion(new TriceBeaconProximityRegion("Beacon UUID Here", MAJOR, MINOR));
+zone.setProximity(TriceBeaconProximityZone.Proximity.NEAR));
+zone.setName("MyZone");
+
+TriceTrigger trigger = TriceFactory.createTriceTrigger(TriceTrigger.eTriggerType.DWELL);
+
+trigger.setName("My trigger");
+trigger.setFrequency(5000);
+trigger.setDwellTime(2000);
+trigger.setLimit(1);
+trigger.attachAction(new TriceNotificationAction(mContext, "My notification message", myIntent);
+
+zone.attachTrigger(trigger);
+
+mManager.addBeaconProximityZone(zone);
+```
+
+###Creating a new geo radius zone programmatically:
+
+Creating triggers, actions and attaching are ommitted. See creating beacon zone for this sample.
+
+```
+TriceGeoLocationZone zone = (TriceGeoLocationZone) TriceFactory.createZone(TriceZone.eZoneType.GEOLOCATION_RADIUS);
+
+zone.setLatitude(LATITUDE);
+zone.setLongitude(LONGITUDE);
+zone.setRadius(15);
+```
