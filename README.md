@@ -44,6 +44,8 @@ dependencies {
 
 ### TriceKitManager
 
+###### Starting Monitoring
+
 ```
 try {
     /**
@@ -58,7 +60,11 @@ try {
 } catch (Exception e) {
     Log.e(TAG, e.getMessage());
 }
+```
 
+###### Stoping Monitoring
+
+```
 /**
  * Stopping TriceKitManager
  */
