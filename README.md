@@ -7,7 +7,7 @@ This is the TriceKit Android SDK that delivers delightful experiences in conjunc
 In you AndroidManifest.xml
 
 ```
-<application
+<application ... >
 
   ...
 
