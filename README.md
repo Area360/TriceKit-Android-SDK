@@ -4,6 +4,8 @@ This is the TriceKit Android SDK that delivers delightful experiences in conjunc
 
 ## Installation
 
+Copy tricekit-android-sdk-release.aar into your app lib folder.
+
 In you AndroidManifest.xml
 
 ```
