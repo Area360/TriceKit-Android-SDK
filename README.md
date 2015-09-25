@@ -87,7 +87,7 @@ This is assuming you have set up both a zone and trigger in the CMS.
       @Override
       public boolean onTriceActionFiltering(TriceZone triceZone, TriceTrigger triceTrigger) {
           /**
-           * You will check here if the name or id of the zone & trigger correspond to the ones you want to add your action.
+           * You will check here if the name or uid of the zone & trigger correspond to the ones you want to add your action on.
            */
             if (("MyZone").equals(triceZone.getName()) && ("MyTrigger").equals(triceTrigger.getName()))
                 return true;
