@@ -65,7 +65,7 @@ try {
 }
 ```
 
-###### Stoping Monitoring
+###### Stopping Monitoring
 
 ```
 /**
