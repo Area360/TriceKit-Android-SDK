@@ -129,3 +129,7 @@ zone.setLatitude(LATITUDE);
 zone.setLongitude(LONGITUDE);
 zone.setRadius(15);
 ```
+
+###Background Service
+
+In order to run TriceKit in the background, you need to implement your own background service. An example is provided with the samples.
