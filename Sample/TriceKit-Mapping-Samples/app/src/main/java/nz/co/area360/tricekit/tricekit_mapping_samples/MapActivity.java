@@ -34,17 +34,17 @@ public class MapActivity extends TriceKitMapActivity {
     private TriceKitMapDelegate mMapDelegate = new TriceKitMapDelegate() {
         @Override
         public void pointOfInterestPopupSelected(@NonNull TriceKitPointOfInterest pointOfInterest, @NonNull String uid) {
-            // Trigger when a user clicked on the point of interest's sliding panel
+            // User tapped the popup view at the bottom of the screen for the given point of interest.
         }
 
         @Override
         public void pointOfInterestMapMarkerSelected(@NonNull TriceKitPointOfInterest pointOfInterest) {
-            // Trigger when a user clicked on the point of interest
+            // User tapped on the given point of interest map marker.
         }
 
         @Override
         public void mapTapped(int x, int y) {
-            // Trigger when the map has been clicked
+            // User tapped on the map itself, at the given coordinate.
         }
     };
 }

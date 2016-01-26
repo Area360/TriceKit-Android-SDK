@@ -23,9 +23,7 @@ import nz.co.tricekit.building.TriceKitBuildingProvider;
  * Show all available building using RecyclerView.
  * See BuildingAdapter for implementation.
  *
- * TriceKit provides two different components:
- *  - TriceKitMapActivity which is a bundle that automatically loads Floors, Point of interest, Wayfinding, contains a search function.
- *  - TriceKitMapFragment which is only the Map component, gives more control to the developer.
+ * TriceKit provides TriceKitMapActivity which is a bundle that automatically loads Floors, Point of interest, Wayfinding, contains a search function.
  */
 public class MainActivity extends AppCompatActivity {
 

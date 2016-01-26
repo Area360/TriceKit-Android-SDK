@@ -26,9 +26,6 @@ import nz.co.tricekit.location.TriceKitMapActivity;
  *
  * Display all buildings.
  * If a building is selected, will download all floors, point of interest information and then start the Map Activity.
- * Two different Activity are provided whitin this sample:
- *  - MapActivity which use TriceKitMapActivity
- *  - MapFragmentActivity which only use TriceKitMapFragment
  */
 public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHolder> {
 
@@ -78,11 +75,6 @@ public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHo
                          * Use MapActivity.class sample in order to have the TriceKitMapActivity bundle.
                          */
                         Intent intent = new Intent(mContext, MapActivity.class);
-
-                        /**
-                         * Use MapFragmentActivity.class sample in order to start the TriceKitMapFragment component only
-                         */
-                        //Intent intent = new Intent(mContext, MapFragmentActivity.class);
 
                         /**
                          * Provide the building to load to the Map Activity
