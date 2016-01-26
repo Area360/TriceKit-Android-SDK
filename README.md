@@ -12,6 +12,10 @@ This is the TriceKit Android SDK that delivers delightful experiences in conjunc
     - [Geolocation Zone](#creating-a-new-geo-radius-zone-programmatically)
     - [Background Service](#background-service)
  - [Mapping](#mapping)
+    - [Create your map activity](#1-create-your-map-activity)
+    - [Correctly launching the map activity](#2-correctly-launching-the-map-activity)
+    - [Configure the map](#3-configure-the-map)
+    - [Callback delegate](#4-callback-delegate)
 
 ## Installation
 
