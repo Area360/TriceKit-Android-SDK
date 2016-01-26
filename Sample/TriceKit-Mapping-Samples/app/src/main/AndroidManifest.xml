@@ -11,8 +11,8 @@
         android:theme="@style/AppTheme">
 
         <!-- TriceKit Credentials -->
-        <meta-data android:name="trice_api_key" android:value="USER_NAME" />
-        <meta-data android:name="trice_username" android:value="API_KEY" />
+        <meta-data android:name="trice_api_key" android:value="YOUR_API_KEY" />
+        <meta-data android:name="trice_username" android:value="YOUR_USER_NAME" />
 
         <activity
             android:name=".MainActivity"

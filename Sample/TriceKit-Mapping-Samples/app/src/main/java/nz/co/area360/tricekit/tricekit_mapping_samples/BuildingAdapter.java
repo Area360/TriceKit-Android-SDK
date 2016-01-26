@@ -77,7 +77,7 @@ public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHo
                         /**
                          * Use MapActivity.class sample in order to have the TriceKitMapActivity bundle.
                          */
-                        Intent intent = new Intent(mContext, MapFragmentActivity.class);
+                        Intent intent = new Intent(mContext, MapActivity.class);
 
                         /**
                          * Use MapFragmentActivity.class sample in order to start the TriceKitMapFragment component only
