@@ -152,3 +152,28 @@ zone.setRadius(15);
 ###Background Service
 
 In order to run TriceKit in the background, you need to implement your own background service. An example is provided with the samples.
+
+## Mapping
+
+### Application
+
+```
+public class MainApp extends Application {
+
+    public void onCreate() {
+        super.onCreate();
+
+        TriceKitConfig config = new TriceKitConfig();
+        TriceKit.init(this, config);
+    }
+}
+```
+
+In order to use this custom Application class you will need to modify your AndroidManifest.xml
+
+```
+ <application
+        android:name=".MainApp"
+        ...
+ </application>
+```
