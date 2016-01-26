@@ -34,30 +34,17 @@ public class MapActivity extends TriceKitMapActivity {
     private TriceKitMapDelegate mMapDelegate = new TriceKitMapDelegate() {
         @Override
         public void pointOfInterestPopupSelected(@NonNull TriceKitPointOfInterest pointOfInterest, @NonNull String uid) {
-            showToast("Point of interest selected: " + pointOfInterest.getName());
+            // Trigger when a user clicked on the point of interest's sliding panel
         }
 
         @Override
         public void pointOfInterestMapMarkerSelected(@NonNull TriceKitPointOfInterest pointOfInterest) {
-            showToast("Point of interest map marker selected: " + pointOfInterest.getName());
+            // Trigger when a user clicked on the point of interest
         }
 
         @Override
         public void mapTapped(int x, int y) {
-            showToast("Map tapped: " + x + ", " + y);
+            // Trigger when the map has been clicked
         }
     };
-
-    private void showToast(String message) {
-        cancelToast();
-        mToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        mToast.show();
-    }
-
-    private void cancelToast() {
-        if(mToast != null) {
-            mToast.cancel();
-            mToast = null;
-        }
-    }
 }
