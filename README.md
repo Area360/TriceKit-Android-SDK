@@ -359,7 +359,7 @@ public class MyMapActivity extends TriceKitMapActivity {
 
 ### Release Build
 
-For release build you will need to include proguard rules.
+For release build you will need to include some proguard rules.
 
 ```
 #-----------------------------------------------------------------------------------------------------------
