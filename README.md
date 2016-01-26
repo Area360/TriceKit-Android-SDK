@@ -2,6 +2,17 @@
 
 This is the TriceKit Android SDK that delivers delightful experiences in conjunction with the [TriceKit management system](http://beta.tricekit.com).
 
+## Table of Contents
+ - [Installation](#installation)
+ - [Initialization](#initialization)
+ - [Zone, Trigger & Action](#zones-triggers-actions)
+    - [TriceKitManager](#tricekitmanager)
+    - [Example Tasks](#example-tasks)
+    - [Beacon Zone](#creating-a-new-beacon-zone-trigger-and-action-programmatically)
+    - [Geolocation Zone](#creating-a-new-geo-radius-zone-programmatically)
+    - [Background Service](#background-service)
+ - [Mapping](#mapping)
+
 ## Installation
 
 Copy tricekit-android-sdk-release.aar into your app lib folder.
@@ -60,6 +71,20 @@ In your project build.gradle
 
 ```
 classpath 'com.neenbedankt.gradle.plugins:android-apt:1.5.1'
+```
+
+### Initialization
+
+```
+public class MainApp extends Application {
+
+    public void onCreate() {
+        super.onCreate();
+
+        TriceKitConfig config = new TriceKitConfig();
+        TriceKit.init(this, config);
+    }
+}
 ```
 
 ## Zones, Triggers, Actions
@@ -137,7 +162,7 @@ zone.attachTrigger(trigger);
 mManager.addBeaconProximityZone(zone);
 ```
 
-###Creating a new geo radius zone programmatically:
+### Creating a new geo radius zone programmatically:
 
 Creating triggers, actions and attaching are ommitted. See creating beacon zone for this sample.
 
@@ -154,20 +179,6 @@ zone.setRadius(15);
 In order to run TriceKit in the background, you need to implement your own background service. An example is provided with the samples.
 
 ## Mapping
-
-### Application
-
-```
-public class MainApp extends Application {
-
-    public void onCreate() {
-        super.onCreate();
-
-        TriceKitConfig config = new TriceKitConfig();
-        TriceKit.init(this, config);
-    }
-}
-```
 
 In order to use this custom Application class you will need to modify your AndroidManifest.xml
 
