@@ -19,7 +19,7 @@ In you AndroidManifest.xml
 </application>
 ```
 
-In your build.gradle
+In your app module build.gradle
 
 ```
 android {
@@ -33,14 +33,33 @@ android {
 }
 
 dependencies {
+    apt 'com.google.dagger:dagger-compiler:2.0.1'
+    provided 'javax.annotation:javax.annotation-api:1.2'
+    compile 'com.google.dagger:dagger:2.0.1'
+    
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.google.android.gms:play-services:6.5.87'
     compile 'com.android.support:cardview-v7:22.1.0'
     compile 'com.android.support:support-v4:22.1.0'
+    
+    compile 'se.emilsjolander:stickylistheaders:2.7.0'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.5.0'
+    compile 'com.squareup.okio:okio:1.5.0'
+    compile 'com.github.bumptech.glide:okhttp-integration:1.3.1@aar'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+
     compile (name:'tricekit-android-sdk-release', ext:'aar')
 }
 
+```
+
+In your project build.gradle
+
+```
+classpath 'com.neenbedankt.gradle.plugins:android-apt:1.5.1'
 ```
 
 ## Zones, Triggers, Actions
