@@ -16,6 +16,7 @@ This is the TriceKit Android SDK that delivers delightful experiences in conjunc
     - [Correctly launching the map activity](#2-correctly-launching-the-map-activity)
     - [Configure the map](#3-configure-the-map)
     - [Callback delegate](#4-callback-delegate)
+ - [Release build](#release-build)
 
 ## Installation
 
@@ -354,4 +355,35 @@ public class MyMapActivity extends TriceKitMapActivity {
 		}
 	};	
 }
+```
+
+### Release Build
+
+For release build you will need to include proguard rules.
+
+```
+#-----------------------------------------------------------------------------------------------------------
+# Glide image loading library
+#-----------------------------------------------------------------------------------------------------------
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+   **[] $VALUES;
+   public *;
+}-keep class com.bumptech.glide.integration.okhttp.OkHttpGlideModule
+
+#-----------------------------------------------------------------------------------------------------------
+# OkIO (used for okhttp)
+#-----------------------------------------------------------------------------------------------------------
+-dontwarn java.nio.file.Files
+-dontwarn java.nio.file.Path
+-dontwarn java.nio.file.OpenOption
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+
+#-----------------------------------------------------------------------------------------------------------
+# OkHttp
+#-----------------------------------------------------------------------------------------------------------
+-dontwarn com.squareup.okhttp.internal.huc.**
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
+-dontwarn com.squareup.okhttp.**
 ```
