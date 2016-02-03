@@ -1,4 +1,4 @@
-package nz.co.area360.tricekit.tricekit_mapping_samples;
+package nz.co.area360.tricekit.tricekitsample;
 
 import org.junit.Test;
 

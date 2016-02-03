@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="nz.co.area360.tricekit.tricekitsample" >
+    package="nz.co.area360.tricekit.tricekitsample">
 
     <application
+        android:name=".MainApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
 
-        <meta-data android:name="trice_api_key" android:value="API_KEY" />
-        <meta-data android:name="trice_username"  android:value="USERNAME" />
+        <!-- TriceKit Credentials -->
+        <meta-data android:name="trice_api_key" android:value=<!-- TriceKit Api Key -->/>
+        <meta-data android:name="trice_username"  android:value=<!-- TriceKit Username -->/>
 
-        <!--Enable for background service-->
-        <!--<service android:name=".TriceKitService" android:process=":TriceKitService"/>-->
-
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
