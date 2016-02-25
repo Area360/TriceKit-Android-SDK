@@ -22,10 +22,10 @@ In you AndroidManifest.xml
 <application ... >
 
   ...
-
+  
   <meta-data android:name="trice_api_key" android:value="YOUR_API_KEY" />
   <meta-data android:name="trice_username" android:value="YOUR_USER_NAME" />
-  
+
 </application>
 ```
 
@@ -34,7 +34,7 @@ In your app module build.gradle
 ```
 android {
   ...
-  
+
   repositories {
       flatDir {
           dirs 'libs'
@@ -45,13 +45,13 @@ android {
 dependencies {
     provided 'javax.annotation:javax.annotation-api:1.2'
     compile 'com.google.dagger:dagger:2.0.1'
-    
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.google.android.gms:play-services:6.5.87'
     compile 'com.android.support:cardview-v7:22.1.0'
     compile 'com.android.support:support-v4:22.1.0'
-    
+
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.squareup.okhttp:okhttp:2.5.0'
@@ -143,12 +143,12 @@ public class HomeActivity extends Activity {
 			}
 		});
 	}
-	
+
 	private void startMyMapActivity(@NonNull TriceKitBuilding triceKitBuilding) {
 		Intent intent = new Intent(this, MyMapActivity.class);
 		intent.putExtra(TriceKitMapActivity.BUILDING, triceKitBuilding);
 		startActivity(intent);
-	}	
+	}
 }
 ```
 
@@ -167,7 +167,7 @@ mBuildingProvider.loadBuildingsBriefs(new TriceKitBuildingProvider.BuildingBrief
             }
         });
  ...
- 
+
  TriceKitBuildingBrief buildingBrief = buildingProvider.getAllBuildingBriefs().get(position);
  buildingProvider.loadBuildingFromBrief(buildingBrief, new TriceKitBuildingProvider.BuildingRequestDelegate() {
      @Override
@@ -176,7 +176,7 @@ mBuildingProvider.loadBuildingsBriefs(new TriceKitBuildingProvider.BuildingBrief
           * Use MapActivity.class sample in order to have the TriceKitMapActivity bundle.
           */
          Intent intent = new Intent(mContext, MapActivity.class);
-         
+
          /**
           * Provide the building to load to the Map Activity
           */
@@ -232,7 +232,7 @@ public class MyMapActivity extends TriceKitMapActivity {
 	protected TriceKitMapConfig getMapConfig() {
 		return TriceKitMapConfig.create().mapDelegate(mMapDelegate);
 	}
-	
+
 	// Implementation of the TriceKitMapDelegate interface.
 	private TriceKitMapDelegate mMapDelegate = new TriceKitMapDelegate() {
 		@Override
@@ -249,7 +249,7 @@ public class MyMapActivity extends TriceKitMapActivity {
 		public void mapTapped(int x, int y) {
 			// User tapped on the map itself, at the given coordinate.
 		}
-	};	
+	};
 }
 ```
 
