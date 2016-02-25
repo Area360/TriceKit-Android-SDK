@@ -5,12 +5,6 @@ This is the TriceKit Android SDK that delivers delightful experiences in conjunc
 ## Table of Contents
  - [Installation](#installation)
  - [Initialization](#initialization)
- - [Zone, Trigger & Action](#zones-triggers-actions)
-    - [TriceKitManager](#tricekitmanager)
-    - [Example Tasks](#example-tasks)
-    - [Beacon Zone](#creating-a-new-beacon-zone-trigger-and-action-programmatically)
-    - [Geolocation Zone](#creating-a-new-geo-radius-zone-programmatically)
-    - [Background Service](#background-service)
  - [Mapping](#mapping)
     - [Create your map activity](#1-create-your-map-activity)
     - [Correctly launching the map activity](#2-correctly-launching-the-map-activity)
@@ -20,7 +14,7 @@ This is the TriceKit Android SDK that delivers delightful experiences in conjunc
 
 ## Installation
 
-Copy tricekit-android-sdk-release.aar into your app lib folder.
+Copy the .aar lib file into your app lib folder.
 
 In you AndroidManifest.xml
 
@@ -49,7 +43,6 @@ android {
 }
 
 dependencies {
-    apt 'com.google.dagger:dagger-compiler:2.0.1'
     provided 'javax.annotation:javax.annotation-api:1.2'
     compile 'com.google.dagger:dagger:2.0.1'
     
@@ -67,15 +60,9 @@ dependencies {
     compile 'com.github.bumptech.glide:okhttp-integration:1.3.1@aar'
     compile 'com.github.bumptech.glide:glide:3.6.1'
 
-    compile (name:'tricekit-android-sdk-release', ext:'aar')
+    compile (name:'tricekit-maps-android-sdk-release', ext:'aar')
 }
 
-```
-
-In your project build.gradle
-
-```
-classpath 'com.neenbedankt.gradle.plugins:android-apt:1.5.1'
 ```
 
 ### Initialization
@@ -88,8 +75,8 @@ public class MainApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        TriceKitConfig config = new TriceKitConfig();
-        TriceKit.init(this, config);
+        TriceKitMaps.Config config = TriceKitMaps.Config.newInstance();
+        TriceKitMaps.init(this, config);
     }
 }
 ```
@@ -102,97 +89,6 @@ In order to use this custom Application class you will need to modify your Andro
         ...
  </application>
 ```
-
-## Zones, Triggers, Actions
-
-### TriceKitManager
-
-###### Starting Monitoring
-
-```java
-try {
-    /**
-     * Create a new instance of TriceKitManager
-     */
-    TriceKitManager mManager = new TriceKitManager(this);
-
-    /**
-     * Starting TriceKitManager. This will fetch remote and monitor all fetched zones.
-     */
-    mManager.start();
-} catch (Exception e) {
-    Log.e(TAG, e.getMessage());
-}
-```
-
-###### Stopping Monitoring
-
-```java
-/**
- * Stopping TriceKitManager
- */
-mManager.stop();
-```
-
-IMPORTANT: Please note that start and stop must be called in the same life cycle.
-
-### Example Tasks
-
-###### Adding a custom action to a zone & trigger created in CMS:
-
-This is assuming you have set up both a zone and trigger in the CMS.
-
-```java
- mManager.attachAction(new MyAction(), new TriceAction.TriceActionFilter() {
-      @Override
-      public boolean onTriceActionFiltering(TriceZone triceZone, TriceTrigger triceTrigger) {
-          /**
-           * You will check here if the name or uid of the zone & trigger correspond to the ones you want to add your action on.
-           */
-            if (("MyZone").equals(triceZone.getName()) && ("MyTrigger").equals(triceTrigger.getName()))
-                return true;
-            return false;
-      }
-  });
-```
-
-### Creating a new beacon zone, trigger and action programmatically:
-
-```java
-TriceBeaconProximityZone zone = (TriceBeaconProximityZone) TriceFactory.createZone(TriceZone.eZoneType.BEACON_PROXIMITY);
-
-zone.setRegion(new TriceBeaconProximityRegion("Beacon UUID Here", MAJOR, MINOR));
-zone.setProximity(TriceBeaconProximityZone.Proximity.NEAR));
-zone.setName("MyZone");
-
-TriceTrigger trigger = TriceFactory.createTriceTrigger(TriceTrigger.eTriggerType.DWELL);
-
-trigger.setName("My trigger");
-trigger.setFrequency(5000);
-trigger.setDwellTime(2000);
-trigger.setLimit(1);
-trigger.attachAction(new TriceNotificationAction(mContext, "My notification message", myIntent);
-
-zone.attachTrigger(trigger);
-
-mManager.addBeaconProximityZone(zone);
-```
-
-### Creating a new geo radius zone programmatically:
-
-Creating triggers, actions and attaching are ommitted. See creating beacon zone for this sample.
-
-```java
-TriceGeoLocationZone zone = (TriceGeoLocationZone) TriceFactory.createZone(TriceZone.eZoneType.GEOLOCATION_RADIUS);
-
-zone.setLatitude(LATITUDE);
-zone.setLongitude(LONGITUDE);
-zone.setRadius(15);
-```
-
-###Background Service
-
-In order to run TriceKit in the background, you need to implement your own background service. An example is provided with the samples.
 
 ## Mapping
 
@@ -235,7 +131,7 @@ public class HomeActivity extends Activity {
 		// for a specific building. Which loading method to call will depend on what
 		// information you have about your TriceKit building. This example assumes
 		// you know the building ID ahead of time.
-		TriceKit.getTriceBuildingProvider().loadBuildingWithUid("Your building ID", new TriceKitBuildingProvider.BuildingRequestDelegate() {
+		TriceKitMaps.getBuildingProvider().loadBuildingWithUid("Your building ID", new TriceKitBuildingProvider.BuildingRequestDelegate() {
 			@Override
 			public void onSuccess(@NonNull TriceKitBuilding triceKitBuilding) {
 				startMyMapActivity(triceKitBuilding);
