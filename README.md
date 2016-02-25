@@ -22,7 +22,7 @@ In you AndroidManifest.xml
 <application ... >
 
   ...
-  
+
   <meta-data android:name="trice_api_key" android:value="YOUR_API_KEY" />
   <meta-data android:name="trice_username" android:value="YOUR_USER_NAME" />
 
@@ -48,7 +48,6 @@ dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
-    compile 'com.google.android.gms:play-services:6.5.87'
     compile 'com.android.support:cardview-v7:22.1.0'
     compile 'com.android.support:support-v4:22.1.0'
 
