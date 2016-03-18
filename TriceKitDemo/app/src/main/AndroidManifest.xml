@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="nz.co.area360.tricekit.demo">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:name=".MainApp">
+
+        <!-- TriceKit Credentials -->
+        <!--<meta-data android:name="tricekit_api_key" android:value="" />-->
+        <!--<meta-data android:name="tricekit_username" android:value="" />-->
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".zta.ZTAActivity" />
+        <activity android:name=".maps.BuildingActivity" />
+        <activity android:name=".maps.MapActivity" />
+        <activity android:name=".maps.BasicMapActivity" />
+
+        <service android:name=".zta.StickyService" />
+
+    </application>
+
+</manifest>
