@@ -61,6 +61,7 @@ dependencies {
 	// TriceKit Maps
     compile 'com.github.bumptech.glide:okhttp-integration:1.3.1@aar'
     compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile (name:'tricekit-maps-android-sdk', ext:'aar')
 }
 
