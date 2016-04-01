@@ -12,14 +12,6 @@ with the [TriceKit management system](http://tricekit.com).
         - [Adding a local action](#android-local-action)
         - [Handling server actions](#android-server-action)
     - [Setting and fetching user data](#android-user-data)
-- [Features](#features)
-    - [User data](#feature-user-data)
-        - [What is user data?](#feature-user-data-what-is-it)
-        - [How does it work?](#feature-user-data-how-does-it-work)
-        - [How can you use it?](#feature-user-data-how-can-you-use-it)
-            - [URL callback](#feature-user-data-url-callback)
-            - [Trigger segmentation (coming soon)](#feature-user-data-trigger-segmentation)
-        - [Use case example](#feature-user-data-examples)
 - [Maps Usage](#maps-usage)
     - [initialization](#maps-initialization)
     - [Displaying a TriceKit map](#maps-display)
@@ -46,7 +38,7 @@ dependencies {
 
     ...
 
-	// Shared dependencies
+    // Shared dependencies
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.5.0'
@@ -54,11 +46,11 @@ dependencies {
     compile 'com.google.dagger:dagger:2.0.1'
     compile (name:'tricekit-shared-android-sdk', ext:'aar')
 
-	// TriceKit ZTA
+    // TriceKit ZTA
     compile 'com.google.android.gms:play-services-location:8.4.0'
     compile (name:'tricekit-zta-android-sdk', ext:'aar')
 
-	// TriceKit Maps
+    // TriceKit Maps
     compile 'com.github.bumptech.glide:okhttp-integration:1.3.1@aar'
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -281,110 +273,7 @@ case USERDATA:
   break;
 ```
 
-# <a name="features"></a>Features
-
-## <a name="feature-user-data"></a>User data
-
-### <a name="feature-user-data-what-is-it"></a>What is user data?
-
-User data is meta data associated with users. user data can contain any data as
-long as it follows the standard JSON format. Key/value pairs, objects and arrays
-are supported.
-
-### <a name="feature-user-data-how-does-it-work"></a>How does it work?
-
-When the TriceKit SDK starts, it will initiate a session. Along with that
-session you can provide user data.
-
-> This could for example come from you login system.  When a user logs in, you
-could initiate the TriceKit session with email, age and gender.
-
-In order to associate ZTA pings to a user, each TriceKit organization specifies
-a user primary key. By default the primary key is the device id. This means that if a
-user changes their device, they will look like a new user to TriceKit. To solve
-this, you are able to change the primary key [see user data REST API
-documentation](http://tricekit.com/api/api_doc.html#user-data) to any of the
-user data fields you provide. This can be for example your own `user id` from
-your customer database. As soon as the primary key has been changed, TriceKit
-will associate any subsequent sessions coming with that primary key to the same
-user.
-
-By using our [user data REST
-API](http://tricekit.com/api/api_doc.html#user-data-single-user-data-post), you
-will also be able to update user data for your users as well. User data does not
-necessarily need to come from your app!
-
-### <a name="feature-user-data-how-can-you-use-it"></a>How can you use it?
-
-As soon as you start sending user data, you will be able to use that data to
-personalize your user's experience!
-
-#### <a name="feature-user-data-url-callback"></a>URL callback
-
-By setting up a URL Callback Action on TriceKit CMS (POST only), you will
-receive along that POST any information regarding the Venue, Zone and Trigger
-that trigger that action as well as all the user data. This allows you to
-identify who is in the zone and triggered the action. This is highly valuable to
-you as you will be able to personalize your customer experience.
-
-#### <a name="feature-user-data-trigger-segmentation"></a>Trigger segmentation (coming soon)
-
-Once user data are available, you will be able to apply segmentation rules to
-your Trigger. You can decide if a trigger fires for a particular user based on
-user data. Segmentation rules will be available while creating/editing a trigger
-on TriceKit CMS.
-
-### <a name="feature-user-data-examples"></a>Use case example
-
-Primary key has been previously set to `user_id` ([see user data REST API documentation](https://tricekit.com/api/api_doc.html#user data-user data-primary-key-put)).
-
-Example of information you get once the user logged into the app and that you
-pass to TriceKit:
-
-```
-"name": "Anakin",
-"age": "32",
-"status": "Gold"
-"user_id": "UIEWQ781AHX23"
-```
-
-If you want to know where your users spend their time in your venue based on
-their age, it is now possible. The only thing you have to do is setup a URL
-Callback Action with your own end point that you will have previously developed.
-
-Here is an example of the JSON data that you will get along that POST event.
-
-```
-{
-    "user_data": {
-        "name": "Anakin",
-        "age": "32",
-        "status": "Gold",
-        "user_id": "UIEWQ781AHX23"
-    },
-    "trigger": {
-        "id": 439,
-        "zones_uid": "321",
-        "name": "Cafe trigger",
-        "frequency": 420,
-        "event": "enter"
-    },
-    "zone": {
-      "id": 312,
-      "name": "Cafe"
-    },
-    "venue_uid": "UWIEOQ32AHDBJ"
-}
-```
-
-Now let's use segmentation to personalize the experience of your `GOLD` members.
-In order to achieve that, you have to create a Trigger with segmentation rule.
-
-Setting up a segmentation rule `status == "GOLD"` will restrict the trigger
-from firing unless the user data field `status` exists and has the value
-`GOLD`.
-
-# Maps Usage
+# <a name="maps-usage"></a>Maps Usage
 
 ## <a name="maps-initialization"></a>Initialization
 
@@ -414,11 +303,11 @@ Create your own Android activity which extends the `TriceKitMapActivity` class. 
 
 ```java
 public class MyMapActivity extends TriceKitMapActivity {
-	@Override
-	@NonNull
-	protected TriceKitMapConfig getMapConfig() {
-		return TriceKitMapConfig.create();
-	}
+    @Override
+    @NonNull
+    protected TriceKitMapConfig getMapConfig() {
+        return TriceKitMapConfig.create();
+    }
 }
 ```
 ### Correctly launching the map activity
@@ -431,32 +320,32 @@ You have multiple way of retrieve the building you need, if you know the buildin
 
 ```java
 public class HomeActivity extends Activity {
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		// Start a request through the TriceKit Building Provider to fetch the data
-		// for a specific building. Which loading method to call will depend on what
-		// information you have about your TriceKit building. This example assumes
-		// you know the building ID ahead of time.
-		TriceKitMaps.getBuildingProvider().loadBuildingWithUid("Your building ID", new TriceKitBuildingProvider.BuildingRequestDelegate() {
-			@Override
-			public void onSuccess(@NonNull TriceKitBuilding triceKitBuilding) {
-				startMyMapActivity(triceKitBuilding);
-			}
+        // Start a request through the TriceKit Building Provider to fetch the data
+        // for a specific building. Which loading method to call will depend on what
+        // information you have about your TriceKit building. This example assumes
+        // you know the building ID ahead of time.
+        TriceKitMaps.getBuildingProvider().loadBuildingWithUid("Your building ID", new TriceKitBuildingProvider.BuildingRequestDelegate() {
+            @Override
+            public void onSuccess(@NonNull TriceKitBuilding triceKitBuilding) {
+                startMyMapActivity(triceKitBuilding);
+            }
 
-			@Override
-			public void onFailure() {
-				// Networking error ...
-			}
-		});
-	}
+            @Override
+            public void onFailure() {
+                // Networking error ...
+            }
+        });
+    }
 
-	private void startMyMapActivity(@NonNull TriceKitBuilding triceKitBuilding) {
-		Intent intent = new Intent(this, MyMapActivity.class);
-		intent.putExtra(TriceKitMapActivity.BUILDING, triceKitBuilding);
-		startActivity(intent);
-	}
+    private void startMyMapActivity(@NonNull TriceKitBuilding triceKitBuilding) {
+        Intent intent = new Intent(this, MyMapActivity.class);
+        intent.putExtra(TriceKitMapActivity.BUILDING, triceKitBuilding);
+        startActivity(intent);
+    }
 }
 ```
 
@@ -521,7 +410,7 @@ Example scenario: We want to enable wayfinding and disable the zoom prompt. Our 
 @Override
 @NonNull
 protected TriceKitMapConfig getMapConfig() {
-	return TriceKitMapConfig.create().wayFindingEnabled(true).zoomPromptEnabled(false);
+    return TriceKitMapConfig.create().wayFindingEnabled(true).zoomPromptEnabled(false);
 }
 ```
 
@@ -535,28 +424,28 @@ A common use case for setting a delegate is to be notified that the user has tap
 
 ```java
 public class MyMapActivity extends TriceKitMapActivity {
-	@Override
-	@NonNull
-	protected TriceKitMapConfig getMapConfig() {
-		return TriceKitMapConfig.create().mapDelegate(mMapDelegate);
-	}
+    @Override
+    @NonNull
+    protected TriceKitMapConfig getMapConfig() {
+        return TriceKitMapConfig.create().mapDelegate(mMapDelegate);
+    }
 
-	// Implementation of the TriceKitMapDelegate interface.
-	private TriceKitMapDelegate mMapDelegate = new TriceKitMapDelegate() {
-		@Override
-		public void pointOfInterestPopupSelected(@NonNull TriceKitPointOfInterest pointOfInterest, @NonNull String storyUid) {
-			// User tapped the popup view at the bottom of the screen for the given point of interest.
-		}
+    // Implementation of the TriceKitMapDelegate interface.
+    private TriceKitMapDelegate mMapDelegate = new TriceKitMapDelegate() {
+        @Override
+        public void pointOfInterestPopupSelected(@NonNull TriceKitPointOfInterest pointOfInterest, @NonNull String storyUid) {
+            // User tapped the popup view at the bottom of the screen for the given point of interest.
+        }
 
-		@Override
-		public void pointOfInterestMapMarkerSelected(@NonNull TriceKitPointOfInterest pointOfInterest) {
-			// User tapped on the given point of interest map marker.
-		}
+        @Override
+        public void pointOfInterestMapMarkerSelected(@NonNull TriceKitPointOfInterest pointOfInterest) {
+            // User tapped on the given point of interest map marker.
+        }
 
-		@Override
-		public void mapTapped(int x, int y) {
-			// User tapped on the map itself, at the given coordinate.
-		}
-	};
+        @Override
+        public void mapTapped(int x, int y) {
+            // User tapped on the map itself, at the given coordinate.
+        }
+    };
 }
 ```
