@@ -2,25 +2,26 @@ This is the TriceKit iOS SDK that delivers delightful experiences in conjunction
 with the [TriceKit management system](http://tricekit.com).
 
 # Table of Contents
-- [Installation](#android-installation)
-    - [Installation](#android-installation)
-    - [Configuration](#android-configuration)
-- [ZTA Usage](#android-usage)
-    - [System requirements](#android-requirements)
-    - [Starting TriceKit](#android-starting)
-    - [Adding actions to triggers](#android-add-action)
-        - [Adding a local action](#android-local-action)
-        - [Handling server actions](#android-server-action)
-    - [Setting and fetching user data](#android-user-data)
+- [Installation](#installation)
+    - [Installation](#installation)
+    - [Configuration](#configuration)
+- [ZTA Usage](#usage)
+    - [System requirements](#requirements)
+    - [Starting TriceKit](#starting)
+    - [Adding actions to triggers](#add-action)
+        - [Adding a local action](#local-action)
+        - [Handling server actions](#server-action)
+    - [Setting and fetching user data](#user-data)
 - [Maps Usage](#maps-usage)
     - [initialization](#maps-initialization)
     - [Displaying a TriceKit map](#maps-display)
     - [Configuration](#maps-configuration)
+- [Release Build](#release-build)
 
-## <a name="android-installation"></a>Installation
+## <a name="installation"></a>Installation
 
-Using TriceKit in you Android Studio project required both tricekit-android-sdk.aar
-and tricekit-shared-android-sdk.aar. Copy these two libraries in your libs folder.
+Using TriceKit in your Android Studio project required both tricekit-zta-android-sdk.aar or/and tricekit-maps-android-sdk.aar
+and tricekit-shared-android-sdk.aar. Copy these libraries in your libs folder.
 You will then need to modify you app build.gradle:
 
 ```
@@ -59,7 +60,7 @@ dependencies {
 
 ```
 
-## <a name="android-configuration"></a>Configuration
+## <a name="configuration"></a>Configuration
 
 In your `AndroidManifest.xml`
 
@@ -74,9 +75,9 @@ In your `AndroidManifest.xml`
 </application>
 ```
 
-# <a name="android-usage"></a>ZTA Usage
+# <a name="usage"></a>ZTA Usage
 
-## <a name="android-requirements"></a>System requirements
+## <a name="requirements"></a>System requirements
 
 TriceKit needs Location permissions to run on Marshmallow and above, but also needs Bluetooth to be enable for Beacon scan.
 `SystemRequirementsHelper` provides tools to help you identify what features need to be enabled or turned on. (Location permission for Android Marshmallow and above, Location Services or Bluetooth)
@@ -118,7 +119,7 @@ protected void onActivityResult (int requestCode, int resultCode, Intent data) {
 }
 ```
 
-## <a name="android-starting"></a>Starting TriceKit
+## <a name="starting"></a>Starting TriceKit
 
 
 You need first need to initialize TriceKit ZTA, we recommend using the Application class.
@@ -173,11 +174,11 @@ To stop TriceKit you simply need to call `stop` method:
 triceManager.stop();
 ```
 
-## <a name="android-add-action"></a>Adding actions to triggers
+## <a name="add-action"></a>Adding actions to triggers
 
 There are two ways of handling actions in TriceKit.
 
-### <a name="android-local-action"></a>Adding a local action
+### <a name="local-action"></a>Adding a local action
 
 This is best done by detecting when triggers are added in response to data
 obtained from the server. To do this, you will need to register `OnRemoteUpdateListener`:
@@ -210,7 +211,7 @@ tricekitManager.registerOnRemoteUpdateListener(new TriceKitManager.OnRemoteUpdat
 });
 ```
 
-### <a name="android-server-action"></a>Handling server actions
+### <a name="server-action"></a>Handling server actions
 
 If you have set up a notification action on our TriceKit CMS, you will be able
 to handle that server action by registering for notifications when triggers of a
@@ -247,7 +248,7 @@ Example of the Notification Action metadata:
 
 You will soon be able to create your own action type on our CMS.
 
-## <a name="android-user-data"></a>Setting and fetching user data
+## <a name="user-data"></a>Setting and fetching user data
 
 Details of the user (such as a frequent flyer ID) can be set by calling `setUserData` on the `STARTED` event:
 
@@ -448,4 +449,45 @@ public class MyMapActivity extends TriceKitMapActivity {
         }
     };
 }
+```
+
+
+## <a name="release-build"></a>Release Build
+
+For release build you will need to include some proguard rules.
+
+```
+-keepattributes Signature
+-keep class nz.co.tricekit.** { *; }
+
+#----------------------------------------------------
+# Google gms
+#----------------------------------------------------
+-keep class com.google.android.gms.**
+
+#----------------------------------------------------
+# OkIO (used for okhttp)
+#----------------------------------------------------
+-dontwarn java.nio.file.Files
+-dontwarn java.nio.file.Path
+-dontwarn java.nio.file.OpenOption
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+
+#----------------------------------------------------
+# OkHttp
+#----------------------------------------------------
+-dontwarn com.squareup.okhttp.internal.huc.**
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
+-dontwarn com.squareup.okhttp.**
+
+#----------------------------------------------------
+# Glide image loading library
+#----------------------------------------------------
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+   **[] $VALUES;
+   public *;
+}
+-keep class com.bumptech.glide.integration.okhttp.OkHttpGlideModule
 ```
